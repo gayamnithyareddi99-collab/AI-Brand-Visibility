@@ -1,0 +1,1895 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Brand Visibility Intelligence | AI-Driven Brand Monitoring & Reputation Platform</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Sora:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+
+:root{
+  /* AI Brand Visibility Intelligence Light Blue + White */
+  --blue:#0EA5E9;
+  --blue-light:#38BDF8;
+  --blue-dim:#0284C7;
+  --blue-dark:#0369A1;
+  --blue-deeper:#075985;
+
+  --accent:#0EA5E9;
+  --accent-light:#BAE6FD;
+  --accent-dim:#7DD3FC;
+
+  /* Nav / Footer BG Light Blue */
+  --nav-bg:#0EA5E9;
+  --footer-bg:#0369A1;
+
+  /* Page Backgrounds White */
+  --bg-white:#FFFFFF;
+  --bg-light:#F0F9FF;
+  --bg-section:#E0F2FE;
+  --bg-card:#FFFFFF;
+
+  /* Card borders */
+  --card-border:rgba(14,165,233,0.2);
+  --card-border-strong:rgba(14,165,233,0.4);
+
+  /* Text */
+  --text-dark:#0C2340;
+  --text-mid:#1E4D6B;
+  --text-muted:#4A7FA5;
+  --text-light:#6B9BB8;
+  --white:#FFFFFF;
+
+  --nav-h:72px;
+  --max-w:1200px;
+  --font:'Plus Jakarta Sans',sans-serif;
+  --display:'Sora',sans-serif;
+  --mono:'IBM Plex Mono',monospace;
+  --ease:cubic-bezier(0.4,0,0.2,1);
+  --ease-out:cubic-bezier(0,0,0.2,1);
+}
+
+body{font-family:var(--font);color:var(--text-dark);background:var(--bg-white);overflow-x:hidden;}
+
+::-webkit-scrollbar{width:4px;}
+::-webkit-scrollbar-track{background:var(--bg-light);}
+::-webkit-scrollbar-thumb{background:var(--blue);border-radius:2px;}
+
+img{display:block;max-width:100%;}
+
+/* ─── NAVBAR ─────────────────────────────────────────── */
+.navbar{
+  position:fixed;top:0;left:0;width:100%;height:var(--nav-h);
+  background:var(--nav-bg);backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(255,255,255,0.2);
+  z-index:1000;display:flex;align-items:center;
+  padding:0 clamp(16px,5vw,60px);
+  justify-content:space-between;
+  transition:border-color 0.3s;
+  box-shadow:0 2px 24px rgba(7,89,133,0.3);
+}
+.nav-logo{
+  font-family:var(--display);font-size:18px;font-weight:800;
+  color:var(--white);letter-spacing:-0.3px;
+  display:flex;align-items:center;gap:12px;
+  cursor:pointer;text-decoration:none;flex-shrink:0;
+}
+.nav-logo-icon{
+  width:40px;height:40px;
+  background:rgba(255,255,255,0.2);
+  border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+  box-shadow:0 4px 14px rgba(0,0,0,0.15);
+  border:1px solid rgba(255,255,255,0.3);
+}
+.nav-logo-icon svg{width:22px;height:22px;fill:#fff;}
+.nav-logo-text{display:flex;flex-direction:column;line-height:1;}
+.nav-logo-text span{font-size:10px;font-family:var(--mono);font-weight:500;color:rgba(255,255,255,0.7);letter-spacing:2px;text-transform:uppercase;margin-top:3px;}
+
+.nav-links{display:flex;align-items:center;gap:4px;list-style:none;}
+.nav-links li button{
+  background:none;border:none;
+  color:rgba(255,255,255,0.8);
+  font-size:11px;font-weight:600;
+  padding:8px 14px;border-radius:7px;
+  transition:all 0.22s var(--ease);
+  cursor:pointer;font-family:var(--mono);
+  letter-spacing:0.8px;text-transform:uppercase;
+  position:relative;white-space:nowrap;
+}
+.nav-links li button:hover{color:#fff;background:rgba(255,255,255,0.15);}
+.nav-links li button.active{color:#fff;background:rgba(255,255,255,0.2);}
+.nav-links li button.active::after{
+  content:'';position:absolute;bottom:5px;left:50%;
+  transform:translateX(-50%);width:14px;height:2px;
+  background:var(--white);border-radius:2px;
+}
+
+.nav-right{display:flex;align-items:center;gap:10px;}
+.btn-demo-nav{
+  background:var(--white);
+  color:var(--blue-dark);border:none;padding:9px 20px;border-radius:8px;
+  font-size:11px;font-weight:700;cursor:pointer;
+  transition:all 0.22s;font-family:var(--mono);
+  letter-spacing:0.8px;text-transform:uppercase;white-space:nowrap;
+  box-shadow:0 2px 10px rgba(0,0,0,0.15);
+}
+.btn-demo-nav:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(0,0,0,0.25);background:var(--accent-light);}
+
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;background:none;border:none;flex-shrink:0;}
+.hamburger span{width:22px;height:2px;background:#fff;border-radius:2px;transition:0.3s;display:block;}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.hamburger.open span:nth-child(2){opacity:0;}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+
+.mobile-nav{
+  display:none;position:fixed;top:var(--nav-h);left:0;width:100%;
+  background:var(--blue-dark);backdrop-filter:blur(20px);
+  padding:12px 20px 20px;flex-direction:column;gap:2px;
+  z-index:999;border-bottom:1px solid rgba(255,255,255,0.1);
+  animation:slideDown 0.25s var(--ease-out);
+}
+@keyframes slideDown{from{opacity:0;transform:translateY(-10px);}to{opacity:1;transform:translateY(0);}}
+.mobile-nav.open{display:flex;}
+.mobile-nav button{
+  background:none;border:none;color:rgba(255,255,255,0.8);
+  font-size:13px;font-weight:600;padding:13px 12px;
+  border-bottom:1px solid rgba(255,255,255,0.08);
+  cursor:pointer;font-family:var(--mono);text-align:left;
+  text-transform:uppercase;letter-spacing:1px;
+  transition:color 0.2s,background 0.2s;border-radius:6px;
+}
+.mobile-nav button:hover{color:#fff;background:rgba(255,255,255,0.1);}
+.mobile-nav .mob-cta{
+  margin-top:8px;background:var(--white);
+  color:var(--blue-dark);border:none;padding:13px;
+  border-radius:8px;font-weight:700;font-size:12px;
+  letter-spacing:1px;text-transform:uppercase;cursor:pointer;
+  font-family:var(--mono);
+}
+
+/* ─── PAGE SYSTEM ─────────────────────────────────────── */
+.page{display:none;min-height:100vh;padding-top:var(--nav-h);}
+.page.active{display:block;animation:pgIn 0.35s var(--ease);}
+@keyframes pgIn{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+
+/* ─── SECTION COMMONS ─────────────────────────────────── */
+.label-tag{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--mono);font-size:10px;font-weight:600;
+  letter-spacing:3px;text-transform:uppercase;
+  color:var(--blue-dim);margin-bottom:14px;
+}
+.label-tag::before{content:'';width:20px;height:1px;background:var(--blue);}
+.label-tag-white{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--mono);font-size:10px;font-weight:600;
+  letter-spacing:3px;text-transform:uppercase;
+  color:rgba(255,255,255,0.8);margin-bottom:14px;
+}
+.label-tag-white::before{content:'';width:20px;height:1px;background:rgba(255,255,255,0.6);}
+
+.section-h2{
+  font-family:var(--display);font-size:clamp(28px,3.5vw,52px);
+  font-weight:800;line-height:1.1;letter-spacing:-0.8px;
+  margin-bottom:10px;
+}
+.section-h2.blue-txt{color:var(--blue-dark);}
+.section-h2.dark{color:var(--text-dark);}
+.section-h2.white{color:var(--white);}
+
+.section-divider{width:56px;height:3px;margin:16px 0 28px;border-radius:2px;}
+.divider-blue{background:linear-gradient(90deg,var(--blue),transparent);}
+.divider-white{background:linear-gradient(90deg,rgba(255,255,255,0.8),transparent);}
+.divider-center{margin:16px auto 28px;}
+
+.para-dark{color:var(--text-mid);line-height:1.85;font-size:17px;}
+.para-light{color:rgba(255,255,255,0.85);line-height:1.85;font-size:17px;}
+
+.container{max-width:var(--max-w);margin:0 auto;padding:0 clamp(16px,4vw,60px);}
+
+/* ─── BUTTONS ─────────────────────────────────────────── */
+.btn-primary{
+  display:inline-flex;align-items:center;gap:8px;
+  background:linear-gradient(135deg,var(--blue),var(--blue-dark));
+  color:var(--white);padding:13px 28px;border-radius:8px;
+  text-decoration:none;font-weight:700;font-size:12px;
+  letter-spacing:0.8px;text-transform:uppercase;
+  transition:all 0.25s;font-family:var(--mono);border:none;cursor:pointer;
+  box-shadow:0 4px 16px rgba(14,165,233,0.35);
+}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(14,165,233,0.5);}
+
+.btn-secondary{
+  display:inline-flex;align-items:center;gap:8px;
+  border:1.5px solid var(--blue);color:var(--blue-dark);
+  padding:12px 28px;border-radius:8px;text-decoration:none;
+  font-weight:700;font-size:12px;letter-spacing:0.8px;
+  text-transform:uppercase;transition:all 0.25s;
+  font-family:var(--mono);background:none;cursor:pointer;
+}
+.btn-secondary:hover{background:rgba(14,165,233,0.08);border-color:var(--blue-dim);}
+
+.btn-white{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--white);color:var(--blue-dark);
+  padding:12px 28px;border-radius:8px;
+  font-weight:700;font-size:12px;letter-spacing:0.8px;
+  text-transform:uppercase;transition:all 0.25s;
+  font-family:var(--mono);border:none;cursor:pointer;
+  box-shadow:0 4px 16px rgba(0,0,0,0.12);
+}
+.btn-white:hover{transform:translateY(-2px);background:var(--accent-light);box-shadow:0 8px 28px rgba(0,0,0,0.2);}
+
+/* ─── STATUS BADGES ─────────────────────────────── */
+.risk-badge{
+  display:inline-flex;align-items:center;gap:5px;
+  padding:3px 10px;border-radius:20px;
+  font-size:10px;font-weight:700;font-family:var(--mono);letter-spacing:0.5px;
+}
+.risk-blue{background:rgba(14,165,233,0.1);color:var(--blue-dim);border:1px solid rgba(14,165,233,0.3);}
+.risk-light{background:rgba(186,230,253,0.5);color:var(--blue-dark);border:1px solid rgba(14,165,233,0.25);}
+.risk-green{background:rgba(16,185,129,0.1);color:#059669;border:1px solid rgba(16,185,129,0.25);}
+.risk-dot{width:5px;height:5px;border-radius:50%;background:currentColor;flex-shrink:0;}
+
+/* ─── HERO ─────────────────────────────────────────────── */
+.hero{
+  background:linear-gradient(140deg,#F0F9FF 0%,#E0F2FE 40%,#BAE6FD 100%);
+  padding:clamp(60px,10vw,100px) 0 clamp(50px,8vw,80px);
+  position:relative;overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;top:-80px;right:-80px;
+  width:500px;height:500px;border-radius:50%;
+  background:radial-gradient(circle,rgba(14,165,233,0.12) 0%,transparent 70%);
+}
+.hero-inner{
+  max-width:var(--max-w);margin:0 auto;
+  padding:0 clamp(16px,4vw,60px);
+  display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,80px);
+  align-items:center;
+}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(14,165,233,0.12);border:1px solid rgba(14,165,233,0.3);
+  border-radius:30px;padding:6px 16px;
+  font-family:var(--mono);font-size:10px;font-weight:700;
+  color:var(--blue-dim);letter-spacing:1.5px;text-transform:uppercase;
+  margin-bottom:22px;
+}
+.hero-badge-dot{width:6px;height:6px;border-radius:50%;background:var(--blue);animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.4;}}
+h1{
+  font-family:var(--display);font-size:clamp(34px,5vw,64px);
+  font-weight:800;line-height:1.06;letter-spacing:-1.5px;color:var(--text-dark);
+  margin-bottom:6px;
+}
+h1 .blue{color:var(--blue);}
+h1 .dark-blue{color:var(--blue-dark);}
+.hero-rule{width:48px;height:3px;background:linear-gradient(90deg,var(--blue),var(--blue-light));border-radius:2px;margin:20px 0;}
+.hero-body{font-size:17px;color:var(--text-mid);line-height:1.8;margin-bottom:28px;max-width:540px;}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap;}
+
+.hero-mini-stats{display:flex;gap:14px;margin-top:34px;flex-wrap:wrap;}
+.hero-mini-card{
+  background:rgba(255,255,255,0.8);
+  border:1px solid rgba(14,165,233,0.2);
+  border-radius:12px;padding:14px 18px;min-width:140px;
+  backdrop-filter:blur(8px);
+}
+.hero-mini-card strong{
+  display:block;font-family:var(--display);
+  font-size:22px;font-weight:800;color:var(--blue-dark);
+}
+.hero-mini-card span{font-size:11px;color:var(--text-muted);font-family:var(--mono);}
+
+/* DASHBOARD CARD */
+.score-card{
+  background:#fff;border-radius:18px;
+  border:1px solid rgba(14,165,233,0.2);
+  padding:24px;box-shadow:0 8px 40px rgba(14,165,233,0.12);
+}
+.score-card-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px;}
+.score-card-label{font-family:var(--mono);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);margin-bottom:4px;}
+.dashboard-title{font-family:var(--display);font-size:17px;font-weight:700;color:var(--text-dark);}
+.live-dot-wrap{display:flex;align-items:center;gap:5px;font-family:var(--mono);font-size:9px;font-weight:700;color:var(--blue);letter-spacing:1.5px;}
+.live-dot{width:8px;height:8px;border-radius:50%;background:var(--blue);animation:pulse 1.5s infinite;}
+.score-row{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid rgba(14,165,233,0.08);}
+.score-icon{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:9px;font-weight:700;flex-shrink:0;}
+.score-icon.blue-bg{background:rgba(14,165,233,0.12);color:var(--blue-dim);}
+.score-icon.light-bg{background:rgba(186,230,253,0.4);color:var(--blue-dark);}
+.score-icon.green-bg{background:rgba(16,185,129,0.1);color:#059669;}
+.score-lbl{flex:1;font-size:12px;color:var(--text-muted);}
+.score-val{font-family:var(--mono);font-size:13px;font-weight:700;color:var(--text-dark);}
+.score-big{display:flex;align-items:center;gap:16px;margin-top:18px;padding:16px;background:linear-gradient(135deg,rgba(14,165,233,0.08),rgba(186,230,253,0.15));border-radius:12px;border:1px solid rgba(14,165,233,0.15);}
+.score-big-num{font-family:var(--display);font-size:48px;font-weight:800;color:var(--blue);line-height:1;}
+.score-big-info .label{font-size:13px;font-weight:700;color:var(--text-dark);}
+.score-big-info .sub{font-size:11px;color:var(--text-muted);margin-top:3px;font-family:var(--mono);}
+
+/* ─── STATS STRIP ─────────────────────────────────────── */
+.section-blue{
+  background:linear-gradient(135deg,var(--blue-dark) 0%,var(--blue-deeper) 100%);
+  padding:clamp(60px,8vw,96px) 0;
+}
+.stats-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:48px;
+}
+.stat-card{
+  background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.15);
+  border-radius:16px;padding:clamp(20px,3vw,30px);
+  text-align:center;transition:transform 0.25s,border-color 0.25s;
+}
+.stat-card:hover{transform:translateY(-4px);border-color:rgba(255,255,255,0.3);}
+.stat-num{font-family:var(--display);font-size:clamp(32px,4vw,48px);font-weight:800;color:#fff;margin-bottom:10px;}
+.stat-lbl{font-size:13px;color:rgba(255,255,255,0.75);line-height:1.6;}
+
+/* ─── PLATFORM SECTION ─────────────────────────────────── */
+.platform-section{background:var(--bg-white);padding:clamp(60px,8vw,96px) 0;}
+.platform-sub{max-width:760px;margin-bottom:44px;color:var(--text-mid);}
+.platform-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;}
+.platform-card{
+  background:#fff;border:1px solid rgba(14,165,233,0.15);
+  border-radius:18px;overflow:hidden;
+  transition:border-color 0.3s,box-shadow 0.3s,transform 0.3s;
+  box-shadow:0 2px 12px rgba(14,165,233,0.06);
+}
+.platform-card:hover{border-color:rgba(14,165,233,0.35);box-shadow:0 12px 40px rgba(14,165,233,0.12);transform:translateY(-3px);}
+.platform-img-wrap{width:100%;height:180px;overflow:hidden;background:linear-gradient(135deg,var(--bg-light),var(--bg-section));}
+.platform-img-wrap img{width:100%;height:100%;object-fit:cover;}
+.platform-card .inner{padding:22px;}
+.element-badge{
+  display:inline-block;background:rgba(14,165,233,0.1);
+  color:var(--blue-dim);border-radius:6px;
+  padding:3px 10px;font-family:var(--mono);font-size:9px;
+  font-weight:700;letter-spacing:1.5px;text-transform:uppercase;
+  margin-bottom:12px;border:1px solid rgba(14,165,233,0.2);
+}
+.platform-card h3{font-family:var(--display);font-size:17px;font-weight:700;color:var(--text-dark);margin-bottom:10px;line-height:1.3;}
+.platform-card p{font-size:13px;color:var(--text-muted);line-height:1.75;}
+.more-text{display:none;font-size:13px;color:var(--text-muted);line-height:1.75;margin-top:10px;padding-top:10px;border-top:1px solid rgba(14,165,233,0.1);}
+.platform-card.open .more-text{display:block;}
+.expand-btn{
+  margin-top:16px;background:none;border:1px solid rgba(14,165,233,0.3);
+  color:var(--blue-dim);padding:7px 18px;border-radius:7px;
+  font-size:11px;font-weight:700;cursor:pointer;font-family:var(--mono);
+  letter-spacing:0.8px;text-transform:uppercase;transition:all 0.2s;
+}
+.expand-btn:hover{background:rgba(14,165,233,0.08);border-color:var(--blue);}
+
+/* ─── WHY SECTION ─────────────────────────────────────── */
+.why-section{background:var(--bg-light);padding:clamp(60px,8vw,96px) 0;}
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:44px;}
+.why-card{
+  background:#fff;border:1px solid rgba(14,165,233,0.15);
+  border-radius:16px;padding:clamp(20px,3vw,30px);
+  transition:border-color 0.25s,box-shadow 0.25s;
+}
+.why-card:hover{border-color:rgba(14,165,233,0.35);box-shadow:0 8px 28px rgba(14,165,233,0.1);}
+.why-icon{
+  width:48px;height:48px;border-radius:12px;
+  background:linear-gradient(135deg,rgba(14,165,233,0.12),rgba(186,230,253,0.2));
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:16px;font-size:20px;color:var(--blue);
+  border:1px solid rgba(14,165,233,0.2);
+}
+.why-card h4{font-family:var(--display);font-size:16px;font-weight:700;color:var(--text-dark);margin-bottom:10px;}
+.why-card p{font-size:13px;color:var(--text-muted);line-height:1.75;}
+
+/* ─── SECTION LIGHT ─────────────────────────────────────── */
+.section-light{background:var(--bg-white);padding:clamp(60px,8vw,96px) 0;}
+.section-alt{background:var(--bg-light);padding:clamp(60px,8vw,96px) 0;}
+
+/* ─── MARKET CHARTS ─────────────────────────────────────── */
+.charts-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:44px;}
+.chart-card{
+  background:#fff;border:1px solid rgba(14,165,233,0.15);
+  border-radius:18px;padding:24px;
+  box-shadow:0 4px 16px rgba(14,165,233,0.06);
+}
+.chart-card h4{font-family:var(--display);font-size:15px;font-weight:700;color:var(--text-dark);margin-bottom:4px;}
+.chart-card p{font-size:12px;color:var(--text-muted);margin-bottom:20px;font-family:var(--mono);}
+.chart-wrap{height:260px;position:relative;}
+
+/* ─── ABOUT PAGE ─────────────────────────────────────────── */
+.about-hero{
+  background:linear-gradient(140deg,#E0F2FE 0%,#BAE6FD 60%,#7DD3FC 100%);
+  padding:clamp(80px,12vw,120px) 0 clamp(60px,8vw,80px);
+  position:relative;overflow:hidden;
+}
+.about-hero::after{
+  content:'';position:absolute;bottom:-60px;left:-60px;
+  width:400px;height:400px;border-radius:50%;
+  background:radial-gradient(circle,rgba(14,165,233,0.15) 0%,transparent 70%);
+}
+.about-hero .container{position:relative;z-index:1;}
+.founders-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:44px;}
+.founder-card{
+  background:#fff;border:1px solid rgba(14,165,233,0.15);
+  border-radius:18px;padding:clamp(20px,3vw,36px);
+  box-shadow:0 4px 20px rgba(14,165,233,0.08);
+}
+.founder-img{width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--blue-dark));display:flex;align-items:center;justify-content:center;font-family:var(--display);font-size:24px;font-weight:800;color:#fff;margin-bottom:16px;}
+.founder-card h3{font-family:var(--display);font-size:20px;font-weight:700;color:var(--text-dark);margin-bottom:4px;}
+.founder-card .role{font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--blue-dim);margin-bottom:14px;}
+.founder-card p{font-size:13px;color:var(--text-muted);line-height:1.8;}
+.founder-badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;}
+.f-badge{background:rgba(14,165,233,0.08);border:1px solid rgba(14,165,233,0.2);border-radius:20px;padding:4px 12px;font-family:var(--mono);font-size:10px;color:var(--blue-dim);letter-spacing:0.5px;}
+
+/* ─── FAQ ─────────────────────────────────────────────── */
+.faq-wrap{display:flex;flex-direction:column;gap:12px;margin-top:32px;}
+.faq-item{background:#fff;border:1px solid rgba(14,165,233,0.15);border-radius:14px;overflow:hidden;}
+.faq-q{display:flex;align-items:center;justify-content:space-between;padding:18px 22px;cursor:pointer;gap:16px;}
+.faq-q h4{font-family:var(--display);font-size:15px;font-weight:600;color:var(--text-dark);}
+.faq-icon{font-size:20px;font-weight:300;color:var(--blue);flex-shrink:0;transition:transform 0.3s;}
+.faq-item.open .faq-icon{transform:rotate(45deg);}
+.faq-body{display:none;padding:0 22px 18px;font-size:14px;color:var(--text-muted);line-height:1.8;border-top:1px solid rgba(14,165,233,0.08);}
+.faq-item.open .faq-body{display:block;}
+
+/* ─── PRICING ─────────────────────────────────────────── */
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:44px;}
+.price-card{
+  background:#fff;border:1px solid rgba(14,165,233,0.15);
+  border-radius:18px;padding:clamp(22px,3vw,36px);
+  position:relative;transition:border-color 0.25s,box-shadow 0.25s,transform 0.25s;
+  box-shadow:0 4px 16px rgba(14,165,233,0.06);
+}
+.price-card:hover{transform:translateY(-4px);box-shadow:0 16px 48px rgba(14,165,233,0.14);}
+.price-card.featured{
+  border:2px solid var(--blue);
+  box-shadow:0 8px 40px rgba(14,165,233,0.18);
+  transform:scale(1.03);
+}
+.price-card.featured:hover{transform:scale(1.03) translateY(-4px);}
+.featured-label{
+  position:absolute;top:-14px;left:50%;transform:translateX(-50%);
+  background:linear-gradient(135deg,var(--blue),var(--blue-dark));
+  color:#fff;padding:4px 18px;border-radius:20px;
+  font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;
+  white-space:nowrap;
+}
+.price-tier{font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--blue-dim);margin-bottom:8px;}
+.price-title{font-family:var(--display);font-size:20px;font-weight:700;color:var(--text-dark);margin-bottom:12px;}
+.price-amount{font-family:var(--display);font-size:clamp(34px,4vw,48px);font-weight:800;color:var(--blue-dark);line-height:1;}
+.price-amount span{font-size:16px;font-weight:500;color:var(--text-muted);}
+.price-desc{font-size:13px;color:var(--text-muted);margin:12px 0 20px;line-height:1.6;}
+.price-features{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:28px;}
+.price-features li{font-size:13px;color:var(--text-mid);display:flex;align-items:flex-start;gap:8px;}
+.price-features li::before{content:'✓';color:var(--blue);font-weight:700;flex-shrink:0;margin-top:1px;}
+
+/* ─── PROCESS ─────────────────────────────────────────── */
+.process-step{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:clamp(30px,5vw,72px);align-items:center;
+  margin-bottom:clamp(56px,8vw,96px);
+}
+.process-step:last-child{margin-bottom:0;}
+.step-num{font-family:var(--mono);font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--blue-dim);margin-bottom:12px;}
+.step-h3{font-family:var(--display);font-size:clamp(22px,2.5vw,32px);font-weight:800;color:var(--text-dark);margin-bottom:16px;line-height:1.2;}
+.step-p{color:var(--text-muted);font-size:15px;line-height:1.8;margin-bottom:18px;}
+.step-img{width:100%;aspect-ratio:16/10;border-radius:16px;border:1px solid rgba(14,165,233,0.15);overflow:hidden;box-shadow:0 8px 32px rgba(14,165,233,0.1);}
+.step-img img{width:100%;height:100%;object-fit:cover;}
+
+/* ─── CONTACT ─────────────────────────────────────────── */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,80px);align-items:start;margin-top:44px;}
+.contact-form{background:#fff;border:1px solid rgba(14,165,233,0.15);border-radius:18px;padding:clamp(22px,3vw,40px);box-shadow:0 4px 20px rgba(14,165,233,0.08);}
+.form-group{margin-bottom:18px;}
+.form-group label{display:block;font-family:var(--mono);font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-muted);margin-bottom:8px;}
+.form-group input,.form-group select,.form-group textarea{
+  width:100%;padding:12px 16px;border:1.5px solid rgba(14,165,233,0.2);
+  border-radius:10px;background:#fff;color:var(--text-dark);
+  font-size:14px;font-family:var(--font);
+  transition:border-color 0.2s,box-shadow 0.2s;
+  outline:none;
+}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{
+  border-color:var(--blue);box-shadow:0 0 0 3px rgba(14,165,233,0.1);
+}
+.form-group textarea{height:120px;resize:vertical;}
+.contact-info h3{font-family:var(--display);font-size:22px;font-weight:700;color:var(--text-dark);margin-bottom:16px;}
+.contact-info p{font-size:15px;color:var(--text-muted);line-height:1.8;margin-bottom:28px;}
+.contact-detail{display:flex;align-items:center;gap:14px;margin-bottom:18px;padding:16px;background:#fff;border:1px solid rgba(14,165,233,0.12);border-radius:12px;}
+.contact-detail .icon{width:40px;height:40px;border-radius:10px;background:rgba(14,165,233,0.1);display:flex;align-items:center;justify-content:center;color:var(--blue);font-size:16px;flex-shrink:0;}
+.contact-detail .text strong{display:block;font-size:13px;font-weight:700;color:var(--text-dark);}
+.contact-detail .text span{font-size:12px;color:var(--text-muted);}
+
+/* ─── FOOTER ─────────────────────────────────────────── */
+footer{
+  background:var(--footer-bg);
+  padding:clamp(48px,6vw,80px) 0 0;
+}
+.footer-grid{
+  display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:clamp(20px,4vw,48px);
+  padding-bottom:clamp(40px,5vw,64px);
+}
+.footer-brand{font-family:var(--display);font-size:20px;font-weight:800;color:#fff;margin-bottom:12px;}
+.footer-desc{font-size:13px;color:rgba(255,255,255,0.7);line-height:1.8;margin-bottom:20px;}
+.footer-badges{display:flex;flex-wrap:wrap;gap:8px;}
+.footer-badge{
+  background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);
+  border-radius:20px;padding:4px 12px;
+  font-family:var(--mono);font-size:9px;color:rgba(255,255,255,0.8);letter-spacing:0.5px;
+}
+.footer-col-title{font-family:var(--mono);font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-bottom:16px;}
+.footer-col{display:flex;flex-direction:column;gap:10px;}
+.footer-col a{font-size:13px;color:rgba(255,255,255,0.7);cursor:pointer;text-decoration:none;transition:color 0.2s;}
+.footer-col a:hover{color:#fff;}
+.footer-bottom-bar{
+  border-top:1px solid rgba(255,255,255,0.12);
+  padding:20px 0;
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;
+}
+.footer-bottom-bar p{font-size:12px;color:rgba(255,255,255,0.6);}
+.footer-bottom-bar p span{color:#fff;font-weight:600;}
+.footer-bottom-links{display:flex;gap:20px;}
+.footer-bottom-links a{font-size:11px;color:rgba(255,255,255,0.55);cursor:pointer;text-decoration:none;transition:color 0.2s;}
+.footer-bottom-links a:hover{color:#fff;}
+
+/* ─── COMPARISON TABLE ─────────────────────────────────── */
+.comp-table{width:100%;border-collapse:collapse;margin-top:32px;}
+.comp-table th{padding:14px 16px;font-family:var(--mono);font-size:10px;letter-spacing:1.5px;text-transform:uppercase;background:rgba(14,165,233,0.06);color:var(--blue-dim);border:1px solid rgba(14,165,233,0.12);text-align:left;}
+.comp-table td{padding:14px 16px;font-size:13px;color:var(--text-mid);border:1px solid rgba(14,165,233,0.1);}
+.comp-table tr:nth-child(even) td{background:rgba(14,165,233,0.02);}
+.comp-table .yes-cell{color:var(--blue);font-weight:700;}
+.comp-table .no-cell{color:var(--text-light);}
+.comp-table .highlight-col{background:rgba(14,165,233,0.05)!important;font-weight:600;color:var(--text-dark);}
+
+/* ─── RESPONSIVE ─────────────────────────────────────── */
+@media(max-width:900px){
+  /* Nav */
+  .nav-links{display:none;}
+  .hamburger{display:flex;}
+  .navbar{padding:0 16px;}
+  .btn-demo-nav{display:none;}
+  .nav-logo-text{max-width:160px;}
+  .nav-logo-text span{display:none;}
+  .mobile-nav{padding:8px 16px 16px;}
+  .mobile-nav button{font-size:14px;padding:15px 12px;}
+  .mobile-nav .mob-cta{padding:15px;font-size:13px;margin-top:10px;}
+
+  /* Hero */
+  .hero-inner{grid-template-columns:1fr;gap:40px;}
+  .hero-inner>div:last-child{display:none;}
+  .hero-btns{flex-direction:column;align-items:stretch;}
+  .hero-btns .btn-primary,
+  .hero-btns .btn-secondary,
+  .hero-btns .btn-white{width:100%;justify-content:center;}
+  .hero-mini-stats{flex-wrap:wrap;}
+  .hero-mini-card{flex:1;min-width:130px;}
+
+  /* Buttons — all sections */
+  .btn-primary,
+  .btn-secondary,
+  .btn-white{padding:13px 20px;font-size:11px;}
+
+  /* Stats strip */
+  .stats-grid{grid-template-columns:repeat(2,1fr);}
+
+  /* Platform */
+  .platform-grid{grid-template-columns:1fr;}
+  .expand-btn{width:100%;text-align:center;justify-content:center;}
+
+  /* Why */
+  .why-grid{grid-template-columns:1fr;}
+
+  /* Pricing */
+  .pricing-grid{grid-template-columns:1fr;}
+  .price-card.featured{transform:none;}
+  .price-card .btn-primary,
+  .price-card .btn-secondary,
+  .price-card .btn-white{width:100%;justify-content:center;}
+
+  /* Process */
+  .process-step{grid-template-columns:1fr;}
+  .process-step .btn-primary,
+  .process-step .btn-secondary{width:100%;justify-content:center;}
+
+  /* Contact */
+  .contact-grid{grid-template-columns:1fr;}
+  .contact-form .btn-primary{width:100%;justify-content:center;}
+
+  /* Charts / Market */
+  .charts-grid{grid-template-columns:1fr;}
+
+  /* About / Founders */
+  .founders-grid{grid-template-columns:1fr;}
+  .about-hero .btn-primary,
+  .about-hero .btn-secondary,
+  .about-hero .btn-white{width:100%;justify-content:center;}
+
+  /* Section CTA buttons (all pages) */
+  .section-blue .btn-white,
+  .section-blue .btn-primary,
+  .section-light .btn-primary,
+  .section-alt .btn-primary,
+  .section-alt .btn-secondary,
+  .section-light .btn-secondary{width:100%;justify-content:center;}
+
+  /* Footer */
+  .footer-grid{grid-template-columns:1fr 1fr;}
+  .footer-bottom-bar{flex-direction:column;align-items:flex-start;gap:10px;}
+  .footer-bottom-links{flex-wrap:wrap;gap:12px;}
+
+  /* Comparison table — horizontal scroll */
+  .comp-table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+
+  /* Vision & Mission 2-col inline grid → 1-col */
+  .section-light [style*="grid-template-columns:1fr 1fr"],
+  .section-alt [style*="grid-template-columns:1fr 1fr"]{
+    grid-template-columns:1fr !important;
+  }
+
+  /* Add-ons 3-col inline grid → 1-col */
+  [style*="grid-template-columns:repeat(3,1fr)"]{
+    grid-template-columns:1fr !important;
+  }
+
+  /* Platform page 2-col inline grid → 1-col (incl. span card) */
+  .platform-grid[style*="grid-template-columns:repeat(2,1fr)"]{
+    grid-template-columns:1fr !important;
+  }
+  .platform-grid[style*="grid-template-columns:repeat(2,1fr)"] .platform-card[style*="grid-column"]{
+    grid-column:auto !important;
+  }
+
+  /* Misc layout fixes */
+  .section-h2{font-size:clamp(24px,6vw,40px);}
+  .para-dark,.para-light{font-size:15px;}
+}
+@media(max-width:600px){
+  .stats-grid{grid-template-columns:1fr;}
+  .footer-grid{grid-template-columns:1fr;}
+  .hero-mini-stats{flex-direction:column;}
+  .hero-mini-card{min-width:unset;width:100%;}
+  .btn-primary,
+  .btn-secondary,
+  .btn-white{width:100%;justify-content:center;}
+  .footer-bottom-links{flex-direction:column;gap:8px;}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     NAVBAR
+═══════════════════════════════════════════════ -->
+<nav class="navbar">
+  <a class="nav-logo" onclick="showPage('home')">
+    <div class="nav-logo-icon">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+    </div>
+    <div class="nav-logo-text">
+      AI Brand Visibility
+      <span>AI Brand Intelligence</span>
+    </div>
+  </a>
+
+  <ul class="nav-links">
+    <li><button id="nav-home" class="active" onclick="showPage('home')">Home</button></li>
+    <li><button id="nav-about" onclick="showPage('about')">About</button></li>
+    <li><button id="nav-platform" onclick="showPage('platform')">Platform</button></li>
+    <li><button id="nav-market" onclick="showPage('market')">Market</button></li>
+    <li><button id="nav-process" onclick="showPage('process')">Process</button></li>
+    <li><button id="nav-faq" onclick="showPage('faq')">FAQ</button></li>
+    <li><button id="nav-pricing" onclick="showPage('pricing')">Pricing</button></li>
+    <li><button id="nav-contact" onclick="showPage('contact')">Contact</button></li>
+  </ul>
+
+  <div class="nav-right">
+    <button class="btn-demo-nav" onclick="showPage('contact')">Request Demo</button>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile Nav -->
+<div class="mobile-nav" id="mobileNav">
+  <button onclick="showPage('home');closeMobile()">Home</button>
+  <button onclick="showPage('about');closeMobile()">About</button>
+  <button onclick="showPage('platform');closeMobile()">Platform</button>
+  <button onclick="showPage('market');closeMobile()">Market</button>
+  <button onclick="showPage('process');closeMobile()">Process</button>
+  <button onclick="showPage('faq');closeMobile()">FAQ</button>
+  <button onclick="showPage('pricing');closeMobile()">Pricing</button>
+  <button onclick="showPage('contact');closeMobile()">Contact</button>
+  <button class="mob-cta" onclick="showPage('contact');closeMobile()">Request Demo →</button>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     PAGE : HOME
+═══════════════════════════════════════════════ -->
+<div class="page active" id="page-home">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-badge">
+          <span class="hero-badge-dot"></span>
+          UK's First AI Brand Visibility Intelligence Platform
+        </div>
+        <h1>
+          See It. Measure It.<br>
+          <span class="blue">Own</span> Your Brand in
+          <span class="dark-blue">AI.</span>
+        </h1>
+        <div class="hero-rule"></div>
+        <p class="hero-body">
+          AI Brand Visibility Intelligence tracks, verifies, and improves how your brand is represented inside ChatGPT, Gemini, Perplexity, and Claude giving marketing teams the intelligence to outrank, outshine, and outperform in the generative AI era.
+        </p>
+        <div class="hero-btns">
+          <button class="btn-primary" onclick="showPage('contact')">Book Platform Demo</button>
+          <button class="btn-secondary" onclick="showPage('platform')">Explore Platform</button>
+        </div>
+        
+      </div>
+      <!-- DASHBOARD -->
+      <div>
+        <div class="score-card">
+          <div class="score-card-top">
+            <div>
+              <div class="score-card-label">AI Brand Visibility · Live Engine</div>
+              <h3 class="dashboard-title">Brand Intelligence Dashboard</h3>
+            </div>
+            <div class="live-dot-wrap"><span class="live-dot"></span>LIVE</div>
+          </div>
+          <div class="score-row">
+            <div class="score-icon blue-bg">SV</div>
+            <span class="score-lbl">Share of Voice ChatGPT</span>
+            <span class="score-val">32%</span>
+          </div>
+          <div class="score-row">
+            <div class="score-icon green-bg">MT</div>
+            <span class="score-lbl">AI Mentions This Month</span>
+            <span class="score-val">24.8K</span>
+          </div>
+          <div class="score-row">
+            <div class="score-icon light-bg">SD</div>
+            <span class="score-lbl">Sentiment Score</span>
+            <span class="score-val">85% ✓</span>
+          </div>
+          <div class="score-row">
+            <div class="score-icon blue-bg">DR</div>
+            <span class="score-lbl">Drift Alerts Detected</span>
+            <span class="score-val">3 Flagged</span>
+          </div>
+          <div class="score-row">
+            <div class="score-icon green-bg">BT</div>
+            <span class="score-lbl">Brand Truth Accuracy</span>
+            <span class="score-val">100%</span>
+          </div>
+          <div class="score-big">
+            <div class="score-big-num">92</div>
+            <div class="score-big-info">
+              <div class="label">Visibility Score</div>
+              <div class="sub">AI Governed · Trust Verified</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS STRIP -->
+  <section class="section-blue">
+    <div class="container">
+      <div class="label-tag-white">The AI Discovery Crisis</div>
+      <h2 class="section-h2 white">Brands Are Losing Control of<br>Their Reputation in AI Answers.</h2>
+      <div class="section-divider divider-white"></div>
+      <p class="para-light" style="max-width:760px;">
+        As users pivot from Google to ChatGPT, Gemini, and Perplexity, brands can no longer rely on keyword rankings. Their commercial success now depends on how accurately and prominently they are represented in AI-synthesised answers. Most organisations have zero visibility into this.
+      </p>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-num">£260M</div>
+          <div class="stat-lbl">Total UK addressable market across e-commerce, agencies, B2B SaaS & enterprise brands</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">26%</div>
+          <div class="stat-lbl">Of marketing budgets wasted on ineffective channels due to lack of AI visibility intelligence</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">4+</div>
+          <div class="stat-lbl">Major AI platforms (ChatGPT, Gemini, Perplexity, Claude) all giving different brand answers</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">78</div>
+          <div class="stat-lbl">Active clients needed to achieve £1M ARR at our weighted average ARPU of £12,800/year</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PLATFORM PREVIEW -->
+  <section class="platform-section">
+    <div class="container">
+      <div class="label-tag">Core Intelligence Engines</div>
+      <h2 class="section-h2 dark">Five Engines. One Complete AI Brand Intelligence Platform.</h2>
+      <div class="section-divider divider-blue"></div>
+      <p class="para-dark platform-sub">AI Brand Visibility Intelligence combines answer-layer mapping, factual verification, reputation drift detection, citation intelligence, and prompt-variance stress testing into one unified SaaS platform no-code, real-time, data-driven.</p>
+      <div class="platform-grid">
+        <div class="platform-card">
+          <div class="platform-img-wrap">
+            <img src="a1.jpg" alt="Answer Layer Mapping">
+          </div>
+          <div class="inner">
+            <div class="element-badge">Engine 01</div>
+            <h3>Answer-Layer Brand Representation Mapping (ABRM)</h3>
+            <p>Evaluates narrative placement, comparative framing, and contextual prominence within synthesised AI answers not just tracking mentions but analysing representation.</p>
+            <div class="more-text">The ABRM analyses how your brand appears in the context of AI-generated responses: whether you are recommended first, described accurately, and framed favourably compared to competitors. Generates actionable Visibility Scores from every prompt query.</div>
+            <button class="expand-btn" onclick="toggleCard(this)">Learn More</button>
+          </div>
+        </div>
+        <div class="platform-card">
+          <div class="platform-img-wrap">
+            <img src="a2.jpg" alt="Brand Truth Verification">
+          </div>
+          <div class="inner">
+            <div class="element-badge">Engine 02</div>
+            <h3>Brand Truth Verification Model (BTVM)</h3>
+            <p>Automatically checks AI-generated claims against verified brand data pricing, features, policies transforming brand governance from passive monitoring to active fact-verification.</p>
+            <div class="more-text">The BTVM catches AI hallucinations and outdated brand information before they damage customer trust. If ChatGPT quotes the wrong price or Gemini attributes an incorrect policy, the BTVM flags it immediately with evidence-based remediation recommendations.</div>
+            <button class="expand-btn" onclick="toggleCard(this)">Learn More</button>
+          </div>
+        </div>
+        <div class="platform-card">
+          <div class="platform-img-wrap">
+            <img src="a3.jpg" alt="Reputation Drift Detection">
+          </div>
+          <div class="inner">
+            <div class="element-badge">Engine 03</div>
+            <h3>AI Reputation Drift Detection Engine (ARDDE)</h3>
+            <p>Detects the gradual divergence between a brand's real-world positioning and the distorted or biased version represented by AI systems over time.</p>
+            <div class="more-text">The ARDDE monitors longitudinal shifts in brand perception across all major LLMs, alerting you when AI answers begin diverging from your authentic brand narrative. Tracks drift monthly, quarterly, and annually to provide a full reputation health timeline.</div>
+            <button class="expand-btn" onclick="toggleCard(this)">Learn More</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY SECTION -->
+  <section class="why-section">
+    <div class="container">
+      <div class="label-tag">Why AI Brand Visibility</div>
+      <h2 class="section-h2 dark">Built for the AI Discovery Era.<br>Not Just SEO with an AI Badge.</h2>
+      <div class="section-divider divider-blue"></div>
+      <div class="why-grid">
+        <div class="why-card">
+          <div class="why-icon"><i class="fas fa-search"></i></div>
+          <h4>Answer-Layer Focus</h4>
+          <p>Analyses synthesised AI narratives not just keyword rankings or web traffic. We measure how AI engines represent your brand in the answer itself, the layer that now drives commercial decisions.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon"><i class="fas fa-shield-alt"></i></div>
+          <h4>Factual Verification Layer</h4>
+          <p>Includes a dedicated Brand Truth Model that cross-checks AI claims against verified commercial data. Manages the factual risk that generic tools completely ignore.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon"><i class="fas fa-chart-line"></i></div>
+          <h4>Drift Detection</h4>
+          <p>Longitudinally monitors reputational shifts across AI models and time. Identifies "AI reputation drift" before it damages customer trust and purchase decisions.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon"><i class="fas fa-network-wired"></i></div>
+          <h4>Citation Influence Graph (CIGAD)</h4>
+          <p>Maps the upstream content ecosystem identifying which specific domains, forums, and publishers disproportionately shape the answers synthesised across different AI models.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon"><i class="fas fa-vials"></i></div>
+          <h4>Prompt-Variance Stress Testing</h4>
+          <p>Uses systematic semantic variations to measure how stable your brand's visibility is across different query phrasings creating a resilience profile for generative discovery.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon"><i class="fas fa-tachometer-alt"></i></div>
+          <h4>KPI-Style Reporting</h4>
+          <p>Converts complex AI transcripts into actionable Visibility and Trust Scores. Marketing teams move from manual analysis to prioritised recommendations in a single dashboard.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div><!-- end page home -->
+
+
+<!-- ═══════════════════════════════════════════
+     PAGE : ABOUT
+═══════════════════════════════════════════════ -->
+<div class="page" id="page-about">
+  <section class="about-hero">
+    <div class="container">
+      <div class="label-tag">About Us</div>
+      <h2 class="section-h2 dark">Built by Digital Marketing Specialists.<br><span style="color:var(--blue-dark);">Designed for the AI Era.</span></h2>
+      <div class="section-divider divider-blue"></div>
+      <p class="para-dark" style="max-width:680px;margin-bottom:40px;">AI Brand Visibility Intelligence is a UK-based SaaS venture founded by Muhammad Saleh and Zulqarian combining deep expertise in SEO, performance marketing, and AI to solve the most pressing challenge facing brands today: losing control of their reputation inside AI-generated answers.</p>
+      <div class="hero-btns">
+        <button class="btn-primary" onclick="showPage('contact')">Get in Touch</button>
+        <button class="btn-secondary" onclick="showPage('platform')">Explore Platform</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Vision & Mission -->
+  <section class="section-light">
+    <div class="container">
+      <div class="label-tag">Vision & Mission</div>
+      <h2 class="section-h2 dark">To Be the Global Standard for<br>AI-Mediated Brand Analytics.</h2>
+      <div class="section-divider divider-blue"></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:32px;">
+        <div class="why-card">
+          <div class="why-icon"><i class="fas fa-eye"></i></div>
+          <h4>Our Vision</h4>
+          <p>To be the global leader in AI-mediated brand intelligence ensuring every brand is accurately represented and discoverable in the generative era. As AI interfaces become the mainstream layer for discovery, we ensure businesses lead with accuracy, not guesswork.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon"><i class="fas fa-bullseye"></i></div>
+          <h4>Our Mission</h4>
+          <p>To provide businesses with the infrastructure to measure, monitor, and master their visibility and trustworthiness inside AI-generated answers. We transform brand governance from passive observation to active fact-verification and systematic narrative management.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Founders -->
+  <section class="section-alt">
+    <div class="container">
+      <div class="label-tag">Our Founders</div>
+      <h2 class="section-h2 dark">The Team Behind<br>AI Brand Visibility</h2>
+      <div class="section-divider divider-blue"></div>
+      <div class="founders-grid">
+        <div class="founder-card">
+          <div class="founder-img">MS</div>
+          <h3>Muhammad Saleh</h3>
+          <div class="role">Co-Founder · CEO</div>
+          <p>Digital Marketing Specialist with over 3 years of experience in SEO, PPC, and content strategy. Holds an MSc in Digital Marketing and a BSc in Computer Science uniquely combining technical web proficiency with marketing acumen. Delivered 3.5x ROAS and 50% organic traffic growth for previous clients. Deep understanding of how brands compete for visibility and where current tools fail to address AI-mediated discovery.</p>
+          <div class="founder-badges">
+            <span class="f-badge">MSc Digital Marketing</span>
+            <span class="f-badge">BSc Computer Science</span>
+            <span class="f-badge">SEO / PPC Specialist</span>
+            <span class="f-badge">GA4 & SEMrush</span>
+          </div>
+        </div>
+        <div class="founder-card">
+          <div class="founder-img" style="background:linear-gradient(135deg,var(--blue-dim),var(--blue-deeper));">ZQ</div>
+          <h3>Zulqarian</h3>
+          <div class="role">Co-Founder · Product Manager</div>
+          <p>Key architect of the venture's vision, bringing a practical commercial perspective to the AI Brand Visibility Intelligence platform. Responsible for the conceptualisation of the "new category of software infrastructure" addressing AI-mediated discovery. Co-developed the integrated framework for Multimodal Campaign Intelligence Fusion and the Brand Truth Verification Model. Ensures the platform solves real-world seller and marketing pain points not just theoretical AI research.</p>
+          <div class="founder-badges">
+            <span class="f-badge">Product Vision</span>
+            <span class="f-badge">Brand Truth Model</span>
+            <span class="f-badge">AI Answer Engine Strategy</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+ 
+      </div>
+    </div>
+  </section>
+</div><!-- end page about -->
+
+
+<!-- ═══════════════════════════════════════════
+     PAGE : PLATFORM
+═══════════════════════════════════════════════ -->
+<div class="page" id="page-platform">
+  <section style="background:linear-gradient(140deg,#F0F9FF 0%,#E0F2FE 60%,#BAE6FD 100%);padding:clamp(80px,12vw,120px) 0 clamp(60px,8vw,80px);">
+    <div class="container">
+      <div class="label-tag">Full Platform</div>
+      <h2 class="section-h2 dark">Five Intelligence Engines.<br><span style="color:var(--blue-dark);">One Brand Command Centre.</span></h2>
+      <div class="section-divider divider-blue"></div>
+      <p class="para-dark" style="max-width:680px;margin-bottom:40px;">Every feature is built specifically for the generative AI era not retrofitted from legacy SEO tools. Our proprietary scoring systems translate complex AI behaviours into actionable commercial KPIs that marketing teams and agencies actually need.</p>
+      <div class="hero-btns">
+        <button class="btn-primary" onclick="showPage('contact')">Request Demo →</button>
+        <button class="btn-secondary" onclick="showPage('pricing')">View Pricing</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- All 5 Engines -->
+  <section class="section-light">
+    <div class="container">
+      <div class="platform-grid" style="grid-template-columns:repeat(2,1fr);gap:28px;">
+        <div class="platform-card">
+          <div class="platform-img-wrap" style="height:220px;">
+            <img src="a4.jpg" alt="ABRM Engine">
+          </div>
+          <div class="inner">
+            <div class="element-badge">Engine 01 · ABRM</div>
+            <h3>Answer-Layer Brand Representation Mapping</h3>
+            <p>Evaluates how your brand is narratively positioned in AI-generated answers measuring contextual prominence, comparative framing, and citation accuracy across ChatGPT, Gemini, Perplexity, and Claude.</p>
+            <div class="more-text">Unlike basic mention tracking, ABRM analyses the quality of brand representation: are you described accurately? Are you recommended favourably compared to competitors? Does the AI answer reflect your actual value proposition? Every prompt run generates a structured Visibility Score with improvement recommendations.</div>
+            <button class="expand-btn" onclick="toggleCard(this)">Learn More</button>
+          </div>
+        </div>
+        <div class="platform-card">
+          <div class="platform-img-wrap" style="height:220px;">
+            <img src="a5.jpg" alt="BTVM">
+          </div>
+          <div class="inner">
+            <div class="element-badge">Engine 02 · BTVM</div>
+            <h3>Brand Truth Verification Model</h3>
+            <p>Automatically checks AI-generated claims against your verified brand data pricing, features, policies, service coverage transforming brand governance from passive monitoring to active fact-verification.</p>
+            <div class="more-text">The BTVM is your brand's factual firewall against AI hallucinations. It maintains a structured "Brand Truth" data model that every AI answer is cross-checked against. When inaccuracies are detected, the system identifies the upstream source and provides remediation guidance to correct the AI narrative pipeline.</div>
+            <button class="expand-btn" onclick="toggleCard(this)">Learn More</button>
+          </div>
+        </div>
+        <div class="platform-card">
+          <div class="platform-img-wrap" style="height:220px;">
+            <img src="a6.jpg" alt="ARDDE">
+          </div>
+          <div class="inner">
+            <div class="element-badge">Engine 03 · ARDDE</div>
+            <h3>AI Reputation Drift Detection Engine</h3>
+            <p>Detects "AI reputation drift" the gradual divergence between a brand's real-world positioning and the distorted or biased version represented by AI systems over time.</p>
+            <div class="more-text">Brands evolve. AI models don't always keep up. The ARDDE monitors longitudinal shifts across all connected LLMs flagging when AI answers begin diverging from your brand narrative. Monthly drift reports give marketing teams an early warning system before reputational damage reaches consumers.</div>
+            <button class="expand-btn" onclick="toggleCard(this)">Learn More</button>
+          </div>
+        </div>
+        <div class="platform-card">
+          <div class="platform-img-wrap" style="height:220px;">
+            <img src="a7.jpg" alt="CIGAD">
+          </div>
+          <div class="inner">
+            <div class="element-badge">Engine 04 · CIGAD</div>
+            <h3>Citation Influence Graph for AI Discovery</h3>
+            <p>Maps the upstream content ecosystem identifying which specific domains, forums, publishers, and knowledge bases disproportionately shape the answers synthesised across different AI models.</p>
+            <div class="more-text">The CIGAD answers the critical question: "What content is shaping how AI describes my brand?" By mapping the citation influence graph, brands can identify which third-party sources to collaborate with, which misinformation pipelines to address, and where to invest content strategy for maximum AI answer impact.</div>
+            <button class="expand-btn" onclick="toggleCard(this)">Learn More</button>
+          </div>
+        </div>
+        <div class="platform-card" style="grid-column:1/-1;">
+          <div class="platform-img-wrap" style="height:240px;">
+            <img src="a8.jpg" alt="PBVST">
+          </div>
+          <div class="inner">
+            <div class="element-badge">Engine 05 · PBVST</div>
+            <h3>Prompt-Variance Brand Visibility Stress Testing</h3>
+            <p>Uses systematic semantic variations to measure how stable your brand's visibility is across different query phrasings creating a resilience profile for generative discovery. Ensures brand representation holds up regardless of how a user phrases their AI question.</p>
+            <div class="more-text">The same brand can receive very different AI treatment depending on query phrasing. PBVST runs hundreds of semantic variations of key brand queries to stress-test visibility stability. The output is a Prompt Resilience Score telling you how robust your brand is to query variation and where you are most vulnerable to representation gaps.</div>
+            <button class="expand-btn" onclick="toggleCard(this)">Learn More</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Competitor Comparison -->
+  <section class="section-alt">
+    <div class="container">
+      <div class="label-tag">Competitive Advantage</div>
+      <h2 class="section-h2 dark">How We Compare to<br>Legacy SEO Tools</h2>
+      <div class="section-divider divider-blue"></div>
+      <p class="para-dark" style="max-width:680px;margin-bottom:8px;">Traditional SEO tools were built for keywords and backlinks. They cannot analyse the answer-level synthesis or factual inconsistencies inherent in generative AI outputs.</p>
+      <div style="overflow-x:auto;">
+        <table class="comp-table">
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th style="background:rgba(14,165,233,0.1);color:var(--blue-dark);">AI Brand Visibility</th>
+              <th>Traditional SEO Tools</th>
+              <th>AI Content Assistants</th>
+              <th>Brand Mention Trackers</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Core Technology</strong></td>
+              <td class="highlight-col">Answer-layer mapping (ABRM) + BTVM</td>
+              <td>Keyword & backlink crawling</td>
+              <td>LLM text generation</td>
+              <td>Web & social scraping</td>
+            </tr>
+            <tr>
+              <td><strong>Primary Function</strong></td>
+              <td class="highlight-col">Brand representation in AI answers</td>
+              <td>SERP rankings & web traffic</td>
+              <td>Content creation support</td>
+              <td>Mention frequency & sentiment</td>
+            </tr>
+            <tr>
+              <td><strong>Factual Verification</strong></td>
+              <td class="highlight-col yes-cell">✓ Brand Truth Model (BTVM)</td>
+              <td class="no-cell">✗ None</td>
+              <td class="no-cell">✗ None</td>
+              <td class="no-cell">✗ None</td>
+            </tr>
+            <tr>
+              <td><strong>Drift Detection</strong></td>
+              <td class="highlight-col yes-cell">✓ ARDDE Engine</td>
+              <td class="no-cell">✗ None</td>
+              <td class="no-cell">✗ None</td>
+              <td class="no-cell">✗ None</td>
+            </tr>
+            <tr>
+              <td><strong>Citation Source Mapping</strong></td>
+              <td class="highlight-col yes-cell">✓ CIGAD Graph</td>
+              <td>Backlink mapping only</td>
+              <td class="no-cell">✗ N/A</td>
+              <td class="no-cell">✗ N/A</td>
+            </tr>
+            <tr>
+              <td><strong>Multi-LLM Coverage</strong></td>
+              <td class="highlight-col yes-cell">✓ 4+ Platforms</td>
+              <td class="no-cell">✗ None</td>
+              <td>Single model</td>
+              <td class="no-cell">✗ None</td>
+            </tr>
+            <tr>
+              <td><strong>Compliance Alignment</strong></td>
+              <td class="highlight-col">Accuracy & Trust focused</td>
+              <td>Search traffic focused</td>
+              <td class="no-cell">N/A</td>
+              <td>Reputation focused</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+</div><!-- end page platform -->
+
+
+<!-- ═══════════════════════════════════════════
+     PAGE : MARKET
+═══════════════════════════════════════════════ -->
+<div class="page" id="page-market">
+  <section style="background:linear-gradient(140deg,#E0F2FE 0%,#BAE6FD 60%,#7DD3FC 100%);padding:clamp(80px,12vw,120px) 0 clamp(60px,8vw,80px);">
+    <div class="container">
+      <div class="label-tag">Market Analysis</div>
+      <h2 class="section-h2 dark">A £260M UK Opportunity<br><span style="color:var(--blue-dark);">Growing Exponentially.</span></h2>
+      <div class="section-divider divider-blue"></div>
+      <p class="para-dark" style="max-width:680px;margin-bottom:40px;">The shift from keyword-based search to intent-based generative AI is a paradigm shift affecting every digital-first business. Brands worldwide now require "Synthetic Share-of-Voice" analytics to understand their presence in narrative-driven AI outcomes a market that did not exist 3 years ago.</p>
+    </div>
+  </section>
+
+  <section class="section-light">
+    <div class="container">
+      <div class="charts-grid">
+        <div class="chart-card">
+          <h4>UK AI Brand Visibility Market by Sector</h4>
+          <p>Annual TAM breakdown across core target segments</p>
+          <div class="chart-wrap"><canvas id="chartSector"></canvas></div>
+        </div>
+        <div class="chart-card">
+          <h4>AI Visibility Gap Why Brands Need Our Platform</h4>
+          <p>Key pain points driving adoption across UK businesses</p>
+          <div class="chart-wrap"><canvas id="chartRootCause"></canvas></div>
+        </div>
+        <div class="chart-card">
+          <h4>Competitive Intelligence Radar</h4>
+          <p>Platform capabilities vs. existing market alternatives</p>
+          <div class="chart-wrap"><canvas id="chartRadar"></canvas></div>
+        </div>
+        <div class="chart-card">
+          <h4>AI Marketing Tech Market Growth 2022–2030</h4>
+          <p>Global market growth + UK AI adoption trajectory</p>
+          <div class="chart-wrap"><canvas id="chartGrowth"></canvas></div>
+        </div>
+      </div>
+      <div class="charts-grid" style="grid-template-columns:1fr;margin-top:32px;">
+        <div class="chart-card">
+          <h4>Platform Feature Comparison AI Brand Visibility vs. Market Average</h4>
+          <p>Capability scores across key intelligence dimensions (out of 100)</p>
+          <div class="chart-wrap"><canvas id="chartPerf"></canvas></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Revenue Projections -->
+  <section class="section-blue">
+    <div class="container">
+      <div class="label-tag-white">Financial Projections</div>
+      <h2 class="section-h2 white">5-Year Revenue Trajectory</h2>
+      <div class="section-divider divider-white"></div>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-num">£69K</div>
+          <div class="stat-lbl">Year 1 Revenue 15 active clients · MVP Launch · Month 7 first revenue</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">£279K</div>
+          <div class="stat-lbl">Year 2 Revenue 25 active clients · Agency tier launched · £76K net profit</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">£1.05M</div>
+          <div class="stat-lbl">Year 3 Revenue 105 active clients · £1M ARR milestone · EU expansion begins</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">£3.14M</div>
+          <div class="stat-lbl">Year 5 Revenue 226 active clients · £891K net profit · Global platform leader</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div><!-- end page market -->
+
+
+<!-- ═══════════════════════════════════════════
+     PAGE: PROCESS
+═══════════════════════════════════════════════ -->
+<div class="page" id="page-process">
+  <section style="background:linear-gradient(140deg,#F0F9FF 0%,#E0F2FE 50%,#BAE6FD 100%);padding:clamp(80px,12vw,120px) 0 clamp(60px,8vw,80px);">
+    <div class="container">
+      <div class="label-tag">How It Works</div>
+      <h2 class="section-h2 dark">From Reactive Monitoring<br>to <span style="color:var(--blue-dark);">Proactive Brand Intelligence</span></h2>
+      <div class="section-divider divider-blue"></div>
+      <p class="para-dark" style="max-width:680px;margin-bottom:40px;">AI Brand Visibility operates as a closed-loop brand intelligence lifecycle capturing, scoring, verifying, and continuously evolving your brand's presence inside AI-generated answers so every marketing decision is grounded in real AI intelligence, not guesswork.</p>
+      <div class="hero-btns">
+        <button class="btn-primary" onclick="showPage('contact')">Request a Demo →</button>
+        <button class="btn-secondary" onclick="showPage('platform')">Explore Engines</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-light" style="padding-top:clamp(60px,8vw,96px);">
+    <div class="container">
+      <div class="label-tag">The 6-Phase Intelligence Lifecycle</div>
+      <h2 class="section-h2 dark">A Complete Brand Intelligence Loop Not Just a Dashboard</h2>
+      <div class="section-divider divider-blue"></div>
+
+      <!-- Phase 1 -->
+      <div class="process-step">
+        <div>
+          <div class="step-num">Phase 01 · Assess</div>
+          <h3 class="step-h3">Establish Your AI Brand Visibility Baseline</h3>
+          <p class="step-p">AI Brand Visibility ingests your brand data products, pricing, policies, USPs to build a comprehensive "Brand Truth Model". Then runs your first set of prompt queries across ChatGPT, Gemini, Perplexity, and Claude to establish your baseline Visibility and Trust Scores.</p>
+          <p class="step-p">The Assessment phase surfaces the hidden cost of unmanaged AI representation giving you a precise, data-driven view of your current AI presence before any strategy is deployed.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:10px;">
+            <span class="risk-badge risk-blue"><span class="risk-dot"></span>Automated Brand Truth Setup</span>
+            <span class="risk-badge risk-light"><span class="risk-dot"></span>Baseline Visibility Report</span>
+            <span class="risk-badge risk-green"><span class="risk-dot"></span>Zero Code Required</span>
+          </div>
+        </div>
+        <div class="step-img">
+          <img src="a9.jpg" alt="Phase 01 – Assess">
+        </div>
+      </div>
+
+      <!-- Phase 2 -->
+      <div class="process-step">
+        <div class="step-img">
+          <img src="a10.jpg" alt="Phase 02 – Monitor">
+        </div>
+        <div>
+          <div class="step-num">Phase 02 · Monitor</div>
+          <h3 class="step-h3">Real-Time Brand Monitoring Across All AI Platforms</h3>
+          <p class="step-p">The Monitoring Engine runs continuous prompt sets across all connected LLMs tracking how your brand is mentioned, positioned, and described in AI answers on a daily basis. Automated alerts flag factual inaccuracies and representation gaps the moment they are detected.</p>
+          <p class="step-p">Think of it as a 24/7 brand safety team watching every AI answer about your business objective, continuous, and immediately actionable.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:10px;">
+            <span class="risk-badge risk-blue"><span class="risk-dot"></span>Live Brand Dashboard</span>
+            <span class="risk-badge risk-light"><span class="risk-dot"></span>Automated AI Alerts</span>
+            <span class="risk-badge risk-blue"><span class="risk-dot"></span>Multi-LLM Tracking</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Phase 3 -->
+      <div class="process-step">
+        <div>
+          <div class="step-num">Phase 03 · Verify</div>
+          <h3 class="step-h3">Brand Truth Verification Catch AI Errors Before They Spread</h3>
+          <p class="step-p">The BTVM engine cross-checks every AI-generated claim about your brand against your verified data model. Outdated pricing? Wrong feature descriptions? Misattributed policies? The BTVM catches them all and generates correction guidance for your content and PR teams.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:10px;">
+            <span class="risk-badge risk-green"><span class="risk-dot"></span>Automated Fact-Checking</span>
+            <span class="risk-badge risk-blue"><span class="risk-dot"></span>Correction Recommendations</span>
+          </div>
+        </div>
+        <div class="step-img">
+          <img src="a11.jpg" alt="Phase 03 – Verify">
+        </div>
+      </div>
+
+      <!-- Phase 4 -->
+      <div class="process-step">
+        <div class="step-img">
+          <img src="a12.jpg" alt="Phase 04 – Optimise">
+        </div>
+        <div>
+          <div class="step-num">Phase 04 · Optimise</div>
+          <h3 class="step-h3">Identify Content Gaps & Upstream Source Opportunities</h3>
+          <p class="step-p">The CIGAD engine maps which specific domains, forums, and publishers are currently shaping how AI models describe your brand. This reveals the exact content investment opportunities that will shift AI narratives in your favour turning citation intelligence into practical marketing action.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:10px;">
+            <span class="risk-badge risk-blue"><span class="risk-dot"></span>Citation Influence Mapping</span>
+            <span class="risk-badge risk-light"><span class="risk-dot"></span>Content Gap Analysis</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Phase 5 -->
+      <div class="process-step">
+        <div>
+          <div class="step-num">Phase 05 · Stress Test</div>
+          <h3 class="step-h3">Prompt-Variance Resilience Testing Ensure Stable Brand Visibility</h3>
+          <p class="step-p">PBVST runs hundreds of semantic variations of key brand queries to test how stable your visibility is across different phrasings. Generates a Prompt Resilience Score showing exactly where brand representation breaks down and where it holds strong.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:10px;">
+            <span class="risk-badge risk-blue"><span class="risk-dot"></span>Query Variation Testing</span>
+            <span class="risk-badge risk-green"><span class="risk-dot"></span>Resilience Score Report</span>
+          </div>
+        </div>
+        <div class="step-img">
+          <img src="a13.jpg" alt="Phase 05 – Stress Test">
+        </div>
+      </div>
+
+      <!-- Phase 6 -->
+      <div class="process-step">
+        <div class="step-img">
+          <img src="a14.jpg" alt="Phase 06 – Report">
+        </div>
+        <div>
+          <div class="step-num">Phase 06 · Report</div>
+          <h3 class="step-h3">KPI-Style Reporting From Data to Strategic Decisions</h3>
+          <p class="step-p">Every insight is delivered as a prioritised, KPI-style report not raw AI transcripts. Marketing teams and agencies receive Visibility Scores, Trust Scores, Synthetic Share-of-Voice metrics, and ranked action items ready for immediate deployment. White-label reporting is available for agencies managing multi-client portfolios.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:10px;">
+            <span class="risk-badge risk-blue"><span class="risk-dot"></span>Visibility & Trust Scores</span>
+            <span class="risk-badge risk-light"><span class="risk-dot"></span>White-Label Agency Reports</span>
+            <span class="risk-badge risk-green"><span class="risk-dot"></span>Prioritised Action Items</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</div><!-- end page process -->
+
+
+<!-- ═══════════════════════════════════════════
+     PAGE : FAQ
+═══════════════════════════════════════════════ -->
+<div class="page" id="page-faq">
+  <section style="background:linear-gradient(140deg,#F0F9FF 0%,#E0F2FE 60%,#BAE6FD 100%);padding:clamp(80px,12vw,120px) 0 clamp(60px,8vw,80px);">
+    <div class="container">
+      <div class="label-tag">FAQ</div>
+      <h2 class="section-h2 dark">Frequently Asked Questions</h2>
+      <div class="section-divider divider-blue"></div>
+      <p class="para-dark" style="max-width:600px;">Everything you need to know about AI Brand Visibility Intelligence and what it means for your brand in the generative AI era.</p>
+    </div>
+  </section>
+
+  <section class="section-light">
+    <div class="container" style="max-width:840px;">
+      <div class="faq-wrap">
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFAQ(this)"><h4>What is AI Brand Visibility Intelligence and why do I need it?</h4><span class="faq-icon">+</span></div>
+          <div class="faq-body">AI Brand Visibility Intelligence is the practice of monitoring and improving how your brand is represented inside AI-generated answers from platforms like ChatGPT, Gemini, Perplexity, and Claude. As users shift from traditional search engines to AI platforms for discovery and purchase decisions, brands that lack visibility in AI answers are effectively invisible to a growing proportion of their potential customers. AI Brand Visibility provides the infrastructure to measure this visibility, verify factual accuracy, and improve brand representation systematically.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFAQ(this)"><h4>How is this different from traditional SEO tools like SEMrush or Ahrefs?</h4><span class="faq-icon">+</span></div>
+          <div class="faq-body">Traditional SEO tools were built for the era of keyword rankings, backlinks, and SERP positions. They cannot analyse how AI systems synthesise information about your brand, detect factual inaccuracies in AI answers, or map the citation sources that influence AI-generated narratives. AI Brand Visibility operates at the answer layer the AI-generated response itself which is an entirely different analytical domain that legacy SEO tools are architecturally incapable of addressing.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFAQ(this)"><h4>Which AI platforms does AI Brand Visibility monitor?</h4><span class="faq-icon">+</span></div>
+          <div class="faq-body">The platform currently monitors ChatGPT (OpenAI), Gemini (Google), Perplexity AI, and Claude (Anthropic). The modular architecture is designed to integrate new AI models as they emerge, ensuring the platform remains relevant as the generative AI landscape evolves. Enterprise clients can request custom model integrations based on their specific market exposure.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFAQ(this)"><h4>What sectors does AI Brand Visibility serve?</h4><span class="faq-icon">+</span></div>
+          <div class="faq-body">Our platform is purpose-built for UK e-commerce and D2C brands, digital marketing and SEO agencies, B2B SaaS and technology companies, and enterprise brand managers. The platform's sector-specific modules are tailored to the unique AI visibility challenges of each segment from product pricing accuracy for e-commerce to competitive service comparisons for B2B SaaS. High-stakes sectors like healthcare and financial services can access specialist Industry Modules with enhanced factual verification.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFAQ(this)"><h4>Is AI Brand Visibility GDPR compliant?</h4><span class="faq-icon">+</span></div>
+          <div class="faq-body">Yes. AI Brand Visibility is architecturally designed to comply with UK GDPR and ICO guidelines. All brand data is processed via secure, anonymised pipelines in UK-based data centres. The platform adheres to ISO/IEC 27001 standards for information security management and implements zero-trust architecture with AES-256 encryption for all brand-specific training data. Full transparency logs are maintained for all AI-generated insights and automated recommendations.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFAQ(this)"><h4>What is "AI reputation drift" and why does it matter?</h4><span class="faq-icon">+</span></div>
+          <div class="faq-body">AI reputation drift is the gradual divergence between a brand's real-world positioning and the distorted or biased version represented by AI systems over time. As AI models are trained on historical data, they can perpetuate outdated, inaccurate, or misleading brand information even after a brand has updated its products, pricing, or public positioning. Left unchecked, AI reputation drift directly damages customer trust, conversion rates, and brand equity in the growing proportion of purchase journeys that now involve AI-mediated discovery.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFAQ(this)"><h4>How do I get started with AI Brand Visibility?</h4><span class="faq-icon">+</span></div>
+          <div class="faq-body">Getting started is simple no code required. After signing up for your chosen plan, you complete a Brand Truth Model setup (approximately 30 minutes) where you input your verified brand data. The platform then automatically runs your first visibility assessment across all connected AI platforms and delivers your Baseline Report within 24 hours. Onboarding includes a structured walkthrough from our customer success team to ensure you extract maximum value from your first session.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div><!-- end page faq -->
+
+
+<!-- ═══════════════════════════════════════════
+     PAGE : PRICING
+═══════════════════════════════════════════════ -->
+<div class="page" id="page-pricing">
+  <section style="background:linear-gradient(140deg,#F0F9FF 0%,#E0F2FE 60%,#BAE6FD 100%);padding:clamp(80px,12vw,120px) 0 clamp(60px,8vw,80px);">
+    <div class="container" style="text-align:center;">
+      <div class="label-tag" style="justify-content:center;">Pricing</div>
+      <h2 class="section-h2 dark">Simple, Transparent Plans<br>for Every Business Size</h2>
+      <div class="section-divider divider-blue divider-center"></div>
+      <p class="para-dark" style="max-width:580px;margin:0 auto;">From UK SMEs to global enterprise brands AI Brand Visibility has a plan designed for your AI brand intelligence needs. All plans include a 14-day free trial with no credit card required.</p>
+    </div>
+  </section>
+
+  <section class="section-light">
+    <div class="container">
+      <div class="pricing-grid">
+        <div class="price-card">
+          <div class="price-tier">Growth</div>
+          <div class="price-title">Growth Tier</div>
+          <div class="price-amount">£499<span>/mo</span></div>
+          <p class="price-desc">For UK e-commerce and D2C brands needing core AI brand visibility tracking and accuracy monitoring.</p>
+          <ul class="price-features">
+            <li>Unified AI visibility dashboard</li>
+            <li>Brand Truth Verification (BTVM)</li>
+            <li>Visibility & Trust Scores</li>
+            <li>Monthly Reputation Drift Report</li>
+            <li>ChatGPT, Gemini, Perplexity, Claude</li>
+            <li>Automated accuracy alerts</li>
+            <li>Standard onboarding support</li>
+          </ul>
+          <button class="btn-secondary" onclick="showPage('contact')">Start Free Trial</button>
+        </div>
+        <div class="price-card featured">
+          <div class="featured-label">Most Popular</div>
+          <div class="price-tier">Agency</div>
+          <div class="price-title">Agency Tier</div>
+          <div class="price-amount">£1,249<span>/mo</span></div>
+          <p class="price-desc">For SEO and performance agencies managing multiple client AI visibility portfolios.</p>
+          <ul class="price-features">
+            <li>Everything in Growth, plus:</li>
+            <li>Multi-client dashboards</li>
+            <li>White-label reporting</li>
+            <li>Synthetic Share-of-Voice metrics</li>
+            <li>Citation Influence Graph (CIGAD)</li>
+            <li>Prompt-Variance Stress Testing</li>
+            <li>Agency onboarding & training</li>
+            <li>Priority support channel</li>
+          </ul>
+          <button class="btn-primary" onclick="showPage('contact')">Start Free Trial</button>
+        </div>
+        <div class="price-card">
+          <div class="price-tier">Enterprise</div>
+          <div class="price-title">Enterprise Tier</div>
+          <div class="price-amount">£2,500<span>/mo</span></div>
+          <p class="price-desc">For global brands requiring advanced governance, API access, and custom scoring models.</p>
+          <ul class="price-features">
+            <li>Everything in Agency, plus:</li>
+            <li>Unlimited API access</li>
+            <li>Custom scoring models</li>
+            <li>Dedicated reputation drift monitoring</li>
+            <li>Audit logs & compliance reporting</li>
+            <li>Custom LLM model integrations</li>
+            <li>Dedicated account manager</li>
+            <li>Enterprise SLA & security review</li>
+          </ul>
+          <button class="btn-secondary" onclick="showPage('contact')">Contact Sales</button>
+        </div>
+      </div>
+
+      <!-- Add-ons -->
+      <div style="margin-top:56px;">
+        <div class="label-tag" style="margin-bottom:10px;">Add-ons & Specialist Modules</div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:16px;">
+          <div style="padding:20px;background:#fff;border-radius:10px;border:1px solid rgba(14,165,233,0.15);">
+            <div style="font-family:var(--mono);font-size:9px;color:var(--blue-dim);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;">One-Time</div>
+            <div style="font-family:var(--display);color:var(--text-dark);font-size:18px;font-weight:700;margin-bottom:4px;">Brand Truth Onboarding</div>
+            <div style="font-family:var(--display);color:var(--blue-dark);font-size:24px;font-weight:800;">£600</div>
+            <div style="color:var(--text-muted);font-size:12px;margin-top:6px;">Platform setup, Brand Truth Model build, and initial AI visibility baseline assessment</div>
+          </div>
+          <div style="padding:20px;background:#fff;border-radius:10px;border:1px solid rgba(14,165,233,0.15);">
+            <div style="font-family:var(--mono);font-size:9px;color:var(--blue-dim);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;">Industry Module</div>
+            <div style="font-family:var(--display);color:var(--text-dark);font-size:18px;font-weight:700;margin-bottom:4px;">Sector-Specific Module</div>
+            <div style="font-family:var(--display);color:var(--blue-dark);font-size:24px;font-weight:800;">£599/mo</div>
+            <div style="color:var(--text-muted);font-size:12px;margin-top:6px;">Deep factual verification for healthcare, financial services, or legal sectors requiring specialist compliance</div>
+          </div>
+          <div style="padding:20px;background:#fff;border-radius:10px;border:1px solid rgba(14,165,233,0.15);">
+            <div style="font-family:var(--mono);font-size:9px;color:var(--blue-dim);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;">Variable</div>
+            <div style="font-family:var(--display);color:var(--text-dark);font-size:18px;font-weight:700;margin-bottom:4px;">AI Governance SDK</div>
+            <div style="font-family:var(--display);color:var(--blue-dark);font-size:24px;font-weight:800;">Custom</div>
+            <div style="color:var(--text-muted);font-size:12px;margin-top:6px;">Developer API and SDK for integrating AI visibility metrics into internal BI, legal, and compliance dashboards</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ -->
+      <div style="margin-top:56px;">
+        <div class="label-tag">Pricing Questions</div>
+        <h3 style="font-family:var(--display);color:var(--text-dark);font-size:clamp(22px,2.5vw,34px);font-weight:800;margin-bottom:28px;">Common Questions About Our Plans</h3>
+        <div class="faq-wrap">
+          <div class="faq-item">
+            <div class="faq-q" onclick="toggleFAQ(this)"><h4>Is there a free trial available?</h4><span class="faq-icon">+</span></div>
+            <div class="faq-body">Yes all plans include a 14-day free trial with no credit card required. We also offer a Free Pilot Access programme for select early-adopter e-commerce brands and agencies who are willing to participate in initial platform validation and provide feedback. Apply via the contact form to be considered.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q" onclick="toggleFAQ(this)"><h4>What is included in the weighted ARPU of £1,066/month?</h4><span class="faq-icon">+</span></div>
+            <div class="faq-body">Our weighted Average Revenue Per Customer (ARPC) of £1,066/month reflects the blended revenue across our tier distribution: 45% Growth (£499), 35% Agency (£1,249), 15% Enterprise (£2,500), and 5% Industry Modules (£599). The annualised ARPC of approximately £12,800 means we need just 78 active clients to achieve £1M ARR a highly achievable target given our UK addressable market of 30,000+ relevant businesses.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q" onclick="toggleFAQ(this)"><h4>Can agencies white-label the platform for their clients?</h4><span class="faq-icon">+</span></div>
+            <div class="faq-body">Yes Agency Tier and Enterprise Tier plans both include white-label reporting capabilities. Agencies can present AI visibility reports, Trust Scores, and Synthetic Share-of-Voice metrics under their own branding. The Agency Tier includes multi-client dashboards allowing a single agency account to manage dozens of client brand profiles simultaneously making it the most commercially leveraged plan for SEO and performance marketing firms.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div><!-- end page pricing -->
+
+
+<!-- ═══════════════════════════════════════════
+     PAGE : CONTACT
+═══════════════════════════════════════════════ -->
+<div class="page" id="page-contact">
+
+  <!-- HERO -->
+  <section style="background:linear-gradient(140deg,#E0F2FE 0%,#BAE6FD 60%,#7DD3FC 100%);padding:clamp(80px,12vw,120px) 0 clamp(60px,8vw,80px);">
+    <div class="container">
+      <div class="label-tag">Get in Touch</div>
+
+      <h2 class="section-h2 dark">
+        Request a Demo or<br>
+        <span style="color:var(--blue-dark);">
+          Start Your Free Trial
+        </span>
+      </h2>
+
+      <div class="section-divider divider-blue"></div>
+
+      <p class="para-dark" style="max-width:600px;">
+        Speak with our team to see how AI Brand Visibility can transform your brand's presence inside AI-generated answers. Demos are tailored to your sector and show your actual Visibility Score live.
+      </p>
+    </div>
+  </section>
+
+  <!-- CONTACT SECTION -->
+  <section class="section-light">
+    <div class="container">
+
+      <div class="contact-grid">
+
+        <!-- CONTACT FORM -->
+        <form action="https://api.web3forms.com/submit" method="POST" class="contact-form">
+
+          <!-- WEB3FORMS ACCESS KEY -->
+          <input type="hidden" name="access_key" value="c8515383-80fb-4241-a6c0-d93385fa171f">
+
+          <!-- OPTIONAL SETTINGS -->
+          <input type="hidden" name="subject" value="New AI Brand Visibility Demo Request">
+          <input type="hidden" name="from_name" value="AI Brand Visibility">
+
+          <h3 style="font-family:var(--display);font-size:22px;font-weight:700;color:var(--text-dark);margin-bottom:24px;">
+            Book Your Platform Demo
+          </h3>
+
+          <div class="form-group">
+            <label>Full Name</label>
+            <input 
+              type="text" 
+              name="name" 
+              placeholder="Your full name"
+              required
+            >
+          </div>
+
+          <div class="form-group">
+            <label>Business Email</label>
+            <input 
+              type="email" 
+              name="email" 
+              placeholder="you@company.com"
+              required
+            >
+          </div>
+
+          <div class="form-group">
+            <label>Company / Agency</label>
+            <input 
+              type="text" 
+              name="company"
+              placeholder="Your company or agency name"
+            >
+          </div>
+
+          <div class="form-group">
+            <label>Business Type</label>
+            <select name="business_type">
+              <option>E-commerce / D2C Brand</option>
+              <option>Digital Marketing / SEO Agency</option>
+              <option>B2B SaaS Company</option>
+              <option>Enterprise Brand / PR Firm</option>
+              <option>Other</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>What are you most interested in?</label>
+            <textarea 
+              name="message"
+              placeholder="Tell us about your AI brand visibility challenges, what platforms you want monitored, or what questions you'd like answered in the demo..."
+              required
+            ></textarea>
+          </div>
+
+          <button 
+            class="btn-primary" 
+            type="submit"
+            style="width:100%;justify-content:center;"
+          >
+            Request Demo →
+          </button>
+
+        </form>
+
+        <!-- CONTACT INFO -->
+        <div class="contact-info">
+
+          <h3>Why Book a Demo?</h3>
+
+          <p>
+            Our personalised demos show your brand's actual Visibility Score across ChatGPT, Gemini, Perplexity, and Claude live, in real time. No slides. No hypotheticals. Just your brand data, right there in the dashboard.
+          </p>
+
+          <!-- EMAIL -->
+          <div class="contact-detail">
+            <div class="icon">
+              <i class="fas fa-envelope"></i>
+            </div>
+
+            <div class="text">
+              <strong>Email Us</strong>
+              <span>hello@aibrandvisibility.co.uk</span>
+            </div>
+          </div>
+
+          <!-- LOCATION -->
+          <div class="contact-detail">
+            <div class="icon">
+              <i class="fas fa-map-marker-alt"></i>
+            </div>
+
+            <div class="text">
+              <strong>UK Headquarters</strong>
+              <span>London, United Kingdom · UK GDPR Compliant</span>
+            </div>
+          </div>
+
+          <!-- RESPONSE TIME -->
+          <div class="contact-detail">
+            <div class="icon">
+              <i class="fas fa-clock"></i>
+            </div>
+
+            <div class="text">
+              <strong>Response Time</strong>
+              <span>Within 24 hours · Mon–Fri 9am–6pm GMT</span>
+            </div>
+          </div>
+
+          <!-- SECURITY -->
+          <div class="contact-detail">
+            <div class="icon">
+              <i class="fas fa-shield-alt"></i>
+            </div>
+
+            <div class="text">
+              <strong>Data Privacy</strong>
+              <span>UK GDPR · ISO 27001 · BTVM Secured</span>
+            </div>
+          </div>
+
+          <!-- PILOT PROGRAM -->
+          <div style="margin-top:32px;padding:20px;background:#fff;border-radius:14px;border:1px solid rgba(14,165,233,0.15);">
+
+            <div style="font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--blue-dim);margin-bottom:10px;">
+              Pilot Programme
+            </div>
+
+            <p style="font-size:14px;color:var(--text-mid);line-height:1.7;margin-bottom:16px;">
+              Interested in validating the platform? Apply for our free pilot programme available to select UK e-commerce brands and digital agencies during our launch phase.
+            </p>
+
+            <button 
+              class="btn-white"
+              style="background:var(--blue);color:#fff;font-size:11px;padding:10px 22px;"
+            >
+              Apply for Pilot Access
+            </button>
+
+          </div>
+
+        </div>
+        <!-- END CONTACT INFO -->
+
+      </div>
+
+    </div>
+  </section>
+
+</div>
+<!-- END PAGE CONTACT -->
+
+<!-- ═══════════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════════════ -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">AI Brand Visibility</div>
+        <p class="footer-desc">The UK's first AI Brand Visibility Intelligence platform measuring, verifying, and improving how your brand is represented inside ChatGPT, Gemini, Perplexity, and Claude. See It. Measure It. Own It.</p>
+        <div class="footer-badges">
+          <span class="footer-badge">UK GDPR Compliant</span>
+          <span class="footer-badge">ISO 27001 Aligned</span>
+          <span class="footer-badge">ICO Registered</span>
+          <span class="footer-badge">No-Code Platform</span>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Platform</div>
+        <div class="footer-col">
+          <a onclick="showPage('platform')">Answer-Layer Mapping (ABRM)</a>
+          <a onclick="showPage('platform')">Brand Truth Verification</a>
+          <a onclick="showPage('platform')">Reputation Drift Detection</a>
+          <a onclick="showPage('platform')">Citation Influence Graph</a>
+          <a onclick="showPage('platform')">Prompt-Variance Stress Test</a>
+          <a onclick="showPage('platform')">Synthetic Share-of-Voice</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Company</div>
+        <div class="footer-col">
+          <a onclick="showPage('about')">About AI Brand Visibility</a>
+          <a onclick="showPage('about')">Muhammad Saleh · Zulqarian</a>
+          <a onclick="showPage('process')">How It Works</a>
+          <a onclick="showPage('faq')">FAQ</a>
+          <a onclick="showPage('market')">Market Analysis</a>
+          <a onclick="showPage('pricing')">Pricing & Plans</a>
+          <a onclick="showPage('contact')">Request a Demo</a>
+          <a onclick="showPage('contact')">Pilot Programme</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Solutions</div>
+        <div class="footer-col">
+          <a onclick="showPage('platform')">E-commerce & D2C Brands</a>
+          <a onclick="showPage('platform')">Digital Marketing Agencies</a>
+          <a onclick="showPage('platform')">B2B SaaS Companies</a>
+          <a onclick="showPage('platform')">Enterprise Brand Managers</a>
+          <a onclick="showPage('pricing')">Growth Plan · £499/mo</a>
+          <a onclick="showPage('pricing')">Agency Plan · £1,249/mo</a>
+          <a onclick="showPage('pricing')">Enterprise · Custom</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom-bar">
+      <p>© 2026 <span>AI Brand Visibility</span> · London, UK · UK GDPR Compliant · ISO 27001 Aligned · by Saleh and Zulqarian</p>
+      <div class="footer-bottom-links">
+        <a onclick="showPage('contact')">Privacy Policy</a>
+        <a onclick="showPage('contact')">Terms of Service</a>
+        <a onclick="showPage('contact')">Confidential Business Plan</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<!-- ═══════════ JAVASCRIPT ═══════════ -->
+<script>
+/* ─── PAGE NAV ───────────────────────────────── */
+function showPage(name){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-links button').forEach(b=>b.classList.remove('active'));
+  const pg=document.getElementById('page-'+name);
+  if(pg){pg.classList.add('active');}
+  const btn=document.getElementById('nav-'+name);
+  if(btn){btn.classList.add('active');}
+  window.scrollTo({top:0,behavior:'instant'});
+  if(name==='market'&&!window.marketChartsLoaded){initMarketCharts();window.marketChartsLoaded=true;}
+}
+
+function toggleCard(btn){
+  const card=btn.closest('.platform-card');
+  card.classList.toggle('open');
+  btn.innerHTML=card.classList.contains('open')?'Show Less':'Learn More';
+}
+
+function toggleFAQ(el){el.parentElement.classList.toggle('open');}
+
+function closeMobile(){
+  document.getElementById('mobileNav').classList.remove('open');
+  document.getElementById('hamburger').classList.remove('open');
+}
+
+document.getElementById('hamburger').addEventListener('click',function(){
+  this.classList.toggle('open');
+  document.getElementById('mobileNav').classList.toggle('open');
+});
+
+/* ─── CHART THEME ────────────────────────────── */
+const BLU='rgba(14,165,233,1)';
+const BLU2='rgba(14,165,233,0.7)';
+const BLU3='rgba(14,165,233,0.35)';
+const LBLU='rgba(56,189,248,0.8)';
+const LBLU2='rgba(186,230,253,0.7)';
+const GRID='rgba(14,165,233,0.08)';
+const MUTED='rgba(30,77,107,0.8)';
+
+Chart.defaults.font.family="'IBM Plex Mono', monospace";
+Chart.defaults.font.size=11;
+Chart.defaults.color=MUTED;
+
+/* ─── MARKET CHARTS ──────────────────────────── */
+function initMarketCharts(){
+  // UK TAM by Sector
+  new Chart(document.getElementById('chartSector').getContext('2d'),{
+    type:'bar',
+    data:{
+      labels:['E-commerce & D2C','Marketing & SEO Agencies','B2B SaaS Companies','Enterprise Brands'],
+      datasets:[{
+        label:'TAM (£ Millions)',
+        data:[90,80,40,50],
+        backgroundColor:[BLU,BLU2,BLU3,LBLU],
+        borderRadius:6,barPercentage:0.6
+      }]
+    },
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{display:false},ticks:{color:MUTED}},y:{grid:{color:GRID},ticks:{color:MUTED,callback:v=>'£'+v+'M'}}}}
+  });
+
+  // AI Visibility Gap
+  new Chart(document.getElementById('chartRootCause').getContext('2d'),{
+    type:'doughnut',
+    data:{
+      labels:['No AI Visibility Monitoring (68%)','AI Reputation Drift Undetected (55%)','Brand Truth Not Verified (71%)','Citation Sources Unknown (62%)','Prompt Variation Untested (48%)'],
+      datasets:[{
+        data:[68,55,71,62,48],
+        backgroundColor:[BLU,BLU2,BLU3,LBLU,LBLU2],
+        borderColor:['rgba(14,165,233,0.9)','rgba(14,165,233,0.7)','rgba(14,165,233,0.4)','rgba(56,189,248,0.8)','rgba(186,230,253,0.8)'],
+        borderWidth:1.5
+      }]
+    },
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{color:MUTED,boxWidth:10,padding:10,font:{size:10}}}}}
+  });
+
+  // Radar Competitive
+  new Chart(document.getElementById('chartRadar').getContext('2d'),{
+    type:'radar',
+    data:{
+      labels:['Answer-Layer Analysis','Factual Verification','Drift Detection','Citation Mapping','Prompt Stress Testing','Multi-LLM Coverage'],
+      datasets:[
+        {label:'AI Brand Visibility',data:[5,5,5,5,5,5],backgroundColor:'rgba(14,165,233,0.1)',borderColor:BLU,borderWidth:2,pointBackgroundColor:BLU},
+        {label:'Traditional SEO Tools',data:[1,1,1,2,1,1],backgroundColor:'rgba(56,189,248,0.06)',borderColor:LBLU,borderWidth:1.5,pointBackgroundColor:LBLU},
+        {label:'Brand Mention Trackers',data:[2,1,1,2,1,2],backgroundColor:'rgba(100,180,255,0.05)',borderColor:'rgba(100,180,255,0.5)',borderWidth:1.5,pointBackgroundColor:'rgba(100,180,255,0.5)'},
+        {label:'AI Content Assistants',data:[1,1,1,1,2,3],backgroundColor:'rgba(30,77,107,0.05)',borderColor:'rgba(30,77,107,0.4)',borderWidth:1.5,pointBackgroundColor:'rgba(30,77,107,0.4)'},
+      ]
+    },
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{color:MUTED,boxWidth:10,padding:14,font:{size:10}}}},scales:{r:{backgroundColor:'rgba(14,165,233,0.01)',grid:{color:GRID},pointLabels:{color:MUTED,font:{size:10}},ticks:{display:false},min:0,max:5}}}
+  });
+
+  // Market Growth
+  new Chart(document.getElementById('chartGrowth').getContext('2d'),{
+    type:'bar',
+    data:{
+      labels:['2022','2023','2024','2025','2026','2027','2028','2030'],
+      datasets:[
+        {label:'Global AI MarTech Market (USD B)',data:[22,38,65,110,190,310,480,850],backgroundColor:BLU2,borderRadius:5,barPercentage:0.55},
+        {type:'line',label:'UK AI Discovery Adoption %',data:[null,3,8,18,32,48,62,80],borderColor:LBLU,borderWidth:2,yAxisID:'y2',tension:0.4,pointBackgroundColor:LBLU,fill:false}
+      ]
+    },
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{color:MUTED,boxWidth:10,padding:12,font:{size:10}}}},scales:{x:{grid:{color:GRID},ticks:{color:MUTED}},y:{grid:{color:GRID},ticks:{color:MUTED,callback:v=>'$'+v+'B'}},y2:{position:'right',grid:{display:false},ticks:{color:MUTED,callback:v=>v+'%'}}}}
+  });
+
+  // Performance Comparison
+  new Chart(document.getElementById('chartPerf').getContext('2d'),{
+    type:'bar',
+    data:{
+      labels:['Answer-Layer Analysis','Factual Accuracy','Drift Detection','Citation Mapping','Multi-LLM Coverage','Prompt Resilience'],
+      datasets:[
+        {label:'AI Brand Visibility',data:[98,97,96,95,98,94],backgroundColor:BLU2,borderRadius:5,barPercentage:0.35},
+        {label:'Legacy SEO Tools Average',data:[3,4,2,5,2,3],backgroundColor:LBLU2,borderRadius:5,barPercentage:0.35}
+      ]
+    },
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{color:MUTED,boxWidth:10,padding:14,font:{size:10}}}},scales:{x:{grid:{color:GRID},ticks:{color:MUTED,font:{size:9}}},y:{grid:{color:GRID},ticks:{color:MUTED,callback:v=>v+' pts'}}}}
+  });
+}
+</script>
+</body>
+</html>
